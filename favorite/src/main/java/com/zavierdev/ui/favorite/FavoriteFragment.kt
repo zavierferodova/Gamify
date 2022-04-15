@@ -17,7 +17,7 @@ import org.koin.core.context.loadKoinModules
 class FavoriteFragment : Fragment() {
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class FavoriteFragment : Fragment() {
     ): View? {
         loadKoinModules(favoriteModule)
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,19 +42,19 @@ class FavoriteFragment : Fragment() {
 
             favoriteViewModel.game.observe(viewLifecycleOwner) { game ->
                 if (game.isNotEmpty()) {
-                    binding.tvEmpty.visibility = View.GONE
-                    binding.rvFavoriteGame.visibility = View.VISIBLE
+                    binding?.tvEmpty?.visibility = View.GONE
+                    binding?.rvFavoriteGame?.visibility = View.VISIBLE
                     gameAdapter.setData(game)
                 } else {
-                    binding.tvEmpty.visibility = View.VISIBLE
-                    binding.rvFavoriteGame.visibility = View.GONE
+                    binding?.tvEmpty?.visibility = View.VISIBLE
+                    binding?.rvFavoriteGame?.visibility = View.GONE
                 }
             }
 
-            with(binding.rvFavoriteGame) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = gameAdapter
+            with(binding?.rvFavoriteGame) {
+                this?.layoutManager = LinearLayoutManager(context)
+                this?.setHasFixedSize(true)
+                this?.adapter = gameAdapter
             }
         }
     }

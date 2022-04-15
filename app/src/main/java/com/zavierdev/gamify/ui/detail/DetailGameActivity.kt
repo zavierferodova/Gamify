@@ -93,7 +93,7 @@ class DetailGameActivity : AppCompatActivity() {
                 tvDetailDescription.text = Html.fromHtml(game.description)
             }
 
-            var isFavoriteGame = game.isFavorite
+            val isFavoriteGame = game.isFavorite
             fabFavorite.setOnClickListener {
                 detailGameViewModel.setFavoriteTourism(game, !isFavoriteGame)
             }
